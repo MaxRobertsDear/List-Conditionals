@@ -9,7 +9,12 @@ class App extends Component {
     userInput: ''
   }
 
-
+  deleteCharHandler = (index) => {
+    const text = this.state.userInput.split('')
+    text.splice(index, 1)
+    const updatedText = text.join('')
+    this.setState({userInput: updatedText})
+  }
 
   inputTextHandler = (event) => {
     this.setState({
@@ -19,7 +24,10 @@ class App extends Component {
 
   render() {
     const charList = this.state.userInput.split('').map((ch, index) => {
-      return <Char character={ch} key={index} />
+      return <Char 
+        character={ch} 
+        key={index}
+        clicked={() => this.deleteCharHandler(index)} />
     })
 
     return (
